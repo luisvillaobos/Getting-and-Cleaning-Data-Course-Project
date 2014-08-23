@@ -70,13 +70,14 @@ finaldata$Activity[mergetrain$Activity=="6"]="LAYING"
 
 write.table(finaldata, "finaldata.txt", row.name=FALSE)
 
+##With this you can check if the file "finaldata.txt" was
+## succesfully created.
+load("finaldata.txt")
+read.table("finaldata.txt", header=TRUE)
+
 ##To create the second data set (contains averages by participant
 ## and activity) the first step is to load and read the file 
 ## containing every observation.
-
-load("finaldata.txt")
-read.table("finadata.txt", header=TRUE)
-
 
 ##Then we will use the function "aggregate" to obtain the averages
 
