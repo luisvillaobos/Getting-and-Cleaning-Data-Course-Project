@@ -25,7 +25,7 @@ load("./UCI HAR Dataset/train/y_train.txt")
 y_train=read.table("./UCI HAR Dataset/train/y_train.txt", 
 	colClasses = "character")
 
-## at this point you have several vectorized files, so we will create two ID 
+## at this point we have several vectorized files, so we will create two ID 
 ## databases, one for TEST and another for TRAIN, with their respective
 ## variable labels.
 
@@ -65,23 +65,36 @@ finaldata$Activity[mergetrain$Activity=="4"]="SITTING"
 finaldata$Activity[mergetrain$Activity=="5"]="STANDING"
 finaldata$Activity[mergetrain$Activity=="6"]="LAYING"
 
-##The last step is to create a data files containing the dataset containing
+##The last step is to create a data file containing the dataset with
 ## every TEST and TRAIN observations.
 
 write.table(finaldata, "finaldata.txt", row.name=FALSE)
 
+##To create the second data set (contains averages by participant
+## and activity) the first step is to load and read the file 
+## containing every observation.
 
 load("finaldata.txt")
 read.table("finadata.txt", header=TRUE)
 
 
-##para crear la base con los promedios por participante y actividad.
+##Then we will use the function "aggregate" to obtain the averages
+
 
 secondbase=aggregate(x=finaldata, by=list(finaldata$ID, finaldata$Activity), 
 	 FUN = mean )
 secondbase=secondbase[,-3:-5]
 secondnames=unlist(dimnames(secondbase)[2])
 colnames(secondbase)=rbind(c("id", "activity", secondnames[3:81]))
-##Para crear el archivo.
+
+##At this point we will have a vector named "secondbase" containing the 
+## databaset with the averages, in the next script we will be able to 
+## create a file containing the data base.
 
 write.table(secondbase, "secondbase.txt", row.name=FALSE)
+
+
+## So if you are still reading at this point this means that you 
+## REALLY took your time to evaluate my work, so I want to thank
+## you in advance for your commentaries and wish you good luck in 
+## your work. 
