@@ -98,4 +98,4 @@ write.table(secondbase, "secondbase.txt", row.name=FALSE)
 ## So if you are still reading at this point this means that you 
 ## REALLY took your time to evaluate my work, so I want to thank
 ## you in advance for your commentaries and wish you good luck in 
-## your work. 
+## your work.
